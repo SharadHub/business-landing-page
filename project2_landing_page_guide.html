@@ -1,0 +1,369 @@
+
+<h2 class="sr-only">Project 2: Business Landing Page with Contact Form API — Full Engineering Guide</h2>
+<style>
+  .pg{padding:1rem 0;font-family:var(--font-sans)}
+  .ph{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;padding:16px 20px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-primary)}
+  .ph-icon{width:44px;height:44px;border-radius:var(--border-radius-md);background:#E1F5EE;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+  .ph-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
+  .ph-sub{font-size:13px;color:var(--color-text-secondary);margin:0}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  .tab{padding:6px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-secondary);white-space:nowrap}
+  .tab.active{background:var(--color-background-primary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+  #p2content{min-height:200px}
+  .section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-secondary);margin:0 0 8px}
+  .card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-primary);padding:14px 16px;margin-bottom:10px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+  .b-purple{background:#EEEDFE;color:#3C3489}
+  .b-teal{background:#E1F5EE;color:#085041}
+  .b-amber{background:#FAEEDA;color:#633806}
+  .b-coral{background:#FAECE7;color:#993C1D}
+  .b-blue{background:#E6F1FB;color:#0C447C}
+  .item-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;color:var(--color-text-primary);line-height:1.5}
+  .item-row:last-child{border-bottom:none;padding-bottom:0}
+  .item-num{font-size:11px;font-weight:500;color:var(--color-text-secondary);min-width:20px;padding-top:2px}
+  .check{color:#0F6E56;font-size:13px;min-width:14px}
+  .stack-item{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px;background:var(--color-background-primary)}
+  .stack-name{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
+  .stack-why{font-size:12px;color:var(--color-text-secondary)}
+  .folder{font-family:var(--font-mono);font-size:12px;line-height:1.8;color:var(--color-text-primary);background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:14px 16px;overflow-x:auto}
+  .fd{color:#185FA5}
+  .ff{color:var(--color-text-secondary)}
+  .fc{color:#3B6D11;font-size:11px}
+  .tip{border-left:2px solid #1D9E75;padding:10px 14px;background:#E1F5EE;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;font-size:13px;color:var(--color-text-primary);line-height:1.5;margin-top:10px}
+  .tip-purple{border-left:2px solid #7F77DD;padding:10px 14px;background:#EEEDFE;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;font-size:13px;color:var(--color-text-primary);line-height:1.5;margin-top:10px}
+  .section-row{display:grid;grid-template-columns:120px 1fr;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;align-items:start}
+  .section-row:last-child{border-bottom:none}
+  .er-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-secondary)}
+  .er-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px}
+  .er-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+  .variant-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-primary)}
+  .v-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em;margin:0 0 4px}
+  .v-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px}
+  .v-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+</style>
+
+<div class="pg">
+  <div class="ph">
+    <div class="ph-icon">🚀</div>
+    <div>
+      <p class="ph-title">Project 2: Business Landing Page + Contact Form API</p>
+      <p class="ph-sub">React SaaS-style landing · Node.js email API · Repeatable in 8–10 hours · $50–$100 per delivery</p>
+    </div>
+  </div>
+
+  <div class="tabs" id="p2tabs">
+    <div class="tab active" onclick="p2show(0)">Tech Stack</div>
+    <div class="tab" onclick="p2show(1)">Folder Structure</div>
+    <div class="tab" onclick="p2show(2)">Requirements</div>
+    <div class="tab" onclick="p2show(3)">HLD</div>
+    <div class="tab" onclick="p2show(4)">LLD</div>
+    <div class="tab" onclick="p2show(5)">End Result</div>
+  </div>
+
+  <div id="p2content"></div>
+</div>
+
+<script>
+const p2panels = [
+
+// 0: Tech Stack
+`<div class="section-label">Frontend</div>
+<div class="grid3">
+  <div class="stack-item"><p class="stack-name">React 18 + Vite</p><p class="stack-why">Fast build, HMR — you'll reuse this on every project</p></div>
+  <div class="stack-item"><p class="stack-name">Tailwind CSS</p><p class="stack-why">Rapid styling — build a professional UI in hours</p></div>
+  <div class="stack-item"><p class="stack-name">Framer Motion</p><p class="stack-why">Scroll-triggered animations — makes it look $200 more expensive instantly</p></div>
+  <div class="stack-item"><p class="stack-name">React Hook Form</p><p class="stack-why">Form validation, error states, loading — without boilerplate</p></div>
+  <div class="stack-item"><p class="stack-name">React Icons</p><p class="stack-why">Hero icons, social icons — no custom SVGs needed</p></div>
+  <div class="stack-item"><p class="stack-name">Axios</p><p class="stack-why">POST to your contact API with proper error handling</p></div>
+</div>
+<div class="section-label">Backend</div>
+<div class="grid3">
+  <div class="stack-item"><p class="stack-name">Node.js + Express</p><p class="stack-why">Single /api/contact POST endpoint — dead simple to build and explain</p></div>
+  <div class="stack-item"><p class="stack-name">Nodemailer</p><p class="stack-why">Sends emails via Gmail App Password — free, reliable, easy to demo</p></div>
+  <div class="stack-item"><p class="stack-name">express-validator</p><p class="stack-why">Validate name, email, message on the server — prevents spam and shows professionalism</p></div>
+  <div class="stack-item"><p class="stack-name">express-rate-limit</p><p class="stack-why">Block form spam (5 requests/hour per IP) — one line of middleware</p></div>
+  <div class="stack-item"><p class="stack-name">cors + helmet</p><p class="stack-why">Security basics — CORS for domain whitelist, helmet for HTTP headers</p></div>
+  <div class="stack-item"><p class="stack-name">dotenv</p><p class="stack-why">Keep Gmail credentials and email in .env — never hardcoded</p></div>
+</div>
+<div class="section-label">Deploy</div>
+<div class="grid3">
+  <div class="stack-item"><p class="stack-name">Vercel (frontend)</p><p class="stack-why">Free, zero-config, custom domain — client sees a real URL immediately</p></div>
+  <div class="stack-item"><p class="stack-name">Railway or Render (backend)</p><p class="stack-why">Free tier Node.js hosting — auto-deploy from GitHub push</p></div>
+  <div class="stack-item"><p class="stack-name">Google Lighthouse</p><p class="stack-why">Run and screenshot your score — 90+ performance and accessibility signals quality to clients</p></div>
+</div>
+<div class="tip-purple">Optional upgrades to increase perceived value and price: add <strong style="font-weight:500">Google Maps embed</strong> ($10 upsell), <strong style="font-weight:500">WhatsApp floating button</strong> ($10 upsell), <strong style="font-weight:500">dark mode toggle</strong> ($15 upsell). These take 20 minutes each.</div>`,
+
+// 1: Folder Structure
+`<div class="section-label">Frontend — <span style="font-family:var(--font-mono);font-size:11px">client/</span></div>
+<div class="folder">
+<span class="fd">client/</span>
+├── <span class="fd">public/</span>
+│   ├── <span class="ff">logo.svg</span>             <span class="fc">// client's brand logo</span>
+│   ├── <span class="ff">og-image.png</span>         <span class="fc">// social share image</span>
+│   └── <span class="ff">favicon.ico</span>
+├── <span class="fd">src/</span>
+│   ├── <span class="fd">components/</span>
+│   │   ├── <span class="fd">layout/</span>
+│   │   │   ├── <span class="ff">Navbar.jsx</span>       <span class="fc">// sticky nav, mobile hamburger</span>
+│   │   │   └── <span class="ff">Footer.jsx</span>       <span class="fc">// links, social, copyright</span>
+│   │   ├── <span class="fd">sections/</span>
+│   │   │   ├── <span class="ff">Hero.jsx</span>         <span class="fc">// headline, CTA button, hero image</span>
+│   │   │   ├── <span class="ff">Features.jsx</span>     <span class="fc">// 3-6 feature cards with icons</span>
+│   │   │   ├── <span class="ff">HowItWorks.jsx</span>   <span class="fc">// numbered steps section</span>
+│   │   │   ├── <span class="ff">Testimonials.jsx</span> <span class="fc">// 3 quotes with avatars</span>
+│   │   │   ├── <span class="ff">Pricing.jsx</span>      <span class="fc">// 3 pricing cards</span>
+│   │   │   ├── <span class="ff">FAQ.jsx</span>          <span class="fc">// accordion component</span>
+│   │   │   └── <span class="ff">Contact.jsx</span>      <span class="fc">// form + map embed</span>
+│   │   └── <span class="fd">ui/</span>
+│   │       ├── <span class="ff">Button.jsx</span>
+│   │       ├── <span class="ff">AnimatedSection.jsx</span> <span class="fc">// Framer Motion scroll fade</span>
+│   │       └── <span class="ff">WhatsAppButton.jsx</span>  <span class="fc">// floating bottom-right</span>
+│   ├── <span class="fd">hooks/</span>
+│   │   └── <span class="ff">useContactForm.js</span>    <span class="fc">// form state + API call logic</span>
+│   ├── <span class="fd">utils/</span>
+│   │   └── <span class="ff">api.js</span>               <span class="fc">// axios instance pointing to backend</span>
+│   ├── <span class="ff">App.jsx</span>                <span class="fc">// sections composed in order</span>
+│   ├── <span class="ff">main.jsx</span>
+│   └── <span class="ff">index.css</span>              <span class="fc">// Tailwind base imports</span>
+├── <span class="ff">tailwind.config.js</span>       <span class="fc">// brand colors, fonts</span>
+├── <span class="ff">vite.config.js</span>
+└── <span class="ff">.env</span>                     <span class="fc">// VITE_API_URL=https://your-api.railway.app</span>
+</div>
+<div class="section-label" style="margin-top:12px">Backend — <span style="font-family:var(--font-mono);font-size:11px">server/</span></div>
+<div class="folder">
+<span class="fd">server/</span>
+├── <span class="fd">middleware/</span>
+│   ├── <span class="ff">rateLimiter.js</span>   <span class="fc">// 5 reqs / hour per IP on /contact</span>
+│   └── <span class="ff">validate.js</span>      <span class="fc">// express-validator result handler</span>
+├── <span class="fd">routes/</span>
+│   └── <span class="ff">contact.routes.js</span> <span class="fc">// POST /api/contact</span>
+├── <span class="fd">services/</span>
+│   └── <span class="ff">email.service.js</span>  <span class="fc">// Nodemailer transporter + sendMail()</span>
+├── <span class="ff">app.js</span>               <span class="fc">// express setup, middleware, routes</span>
+├── <span class="ff">server.js</span>            <span class="fc">// listen on PORT</span>
+└── <span class="ff">.env</span>                 <span class="fc">// EMAIL_USER, EMAIL_PASS, TO_EMAIL, PORT</span>
+</div>
+<div class="tip">Keep it this simple intentionally. The backend is 4 files. Clients don't pay more for complexity they can't see — they pay for a working form that sends real emails. Simplicity means you can deliver it in 2 hours and focus the remaining time on the React UI, which they CAN see.</div>`,
+
+// 2: Requirements
+`<div class="grid2">
+<div>
+<div class="section-label">Functional requirements</div>
+<div class="card" style="padding:12px 14px">
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Page sections (in order)</div>
+  <div class="section-row"><span class="badge b-purple">Navbar</span><span>Logo, nav links (smooth scroll), mobile hamburger that opens a drawer</span></div>
+  <div class="section-row"><span class="badge b-purple">Hero</span><span>Bold headline (H1), subheading, primary CTA button, hero image or illustration</span></div>
+  <div class="section-row"><span class="badge b-purple">Features</span><span>3–6 cards with icon, title, description. Grid layout.</span></div>
+  <div class="section-row"><span class="badge b-purple">How it works</span><span>3 numbered steps with icons. Simple and visual.</span></div>
+  <div class="section-row"><span class="badge b-purple">Testimonials</span><span>3 quotes with avatar, name, title. Carousel or grid.</span></div>
+  <div class="section-row"><span class="badge b-purple">Pricing</span><span>3 plans. Middle plan highlighted. Feature list per plan.</span></div>
+  <div class="section-row"><span class="badge b-purple">FAQ</span><span>Accordion — 5–8 questions. Open/close with animation.</span></div>
+  <div class="section-row"><span class="badge b-purple">Contact</span><span>Name, email, message form. Submit → real email. Success/error state.</span></div>
+  <div class="section-row"><span class="badge b-purple">Footer</span><span>Logo, links, social icons, copyright year</span></div>
+</div>
+<div class="card" style="padding:12px 14px">
+  <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Contact form API</div>
+  <div class="item-row"><span class="check">✓</span>POST /api/contact with name, email, message</div>
+  <div class="item-row"><span class="check">✓</span>Server validates: all fields required, email format valid, message min 10 chars</div>
+  <div class="item-row"><span class="check">✓</span>Nodemailer sends email to business owner</div>
+  <div class="item-row"><span class="check">✓</span>Auto-reply email to the sender</div>
+  <div class="item-row"><span class="check">✓</span>Rate limit: 5 submissions per IP per hour</div>
+  <div class="item-row"><span class="check">✓</span>CORS locked to the frontend domain</div>
+</div>
+</div>
+<div>
+<div class="section-label">Non-functional requirements</div>
+<div class="card" style="padding:12px 14px">
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Performance</span><span>Lighthouse performance score ≥90. Lazy-load images. Vite code splitting. Compressed assets.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Responsive</span><span>Mobile-first Tailwind breakpoints (sm / md / lg). Navbar collapses. Grid stacks. Test on 375px and 1280px.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Accessibility</span><span>Semantic HTML (header, main, section, footer). Alt text on all images. Form labels. Lighthouse A11y score ≥85.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">SEO</span><span>Title tag, meta description, og:image set. H1 contains primary keyword. Lighthouse SEO score 100.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Animation</span><span>Framer Motion: fade-up on scroll for each section. Respect prefers-reduced-motion. No janky reflows.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Security</span><span>helmet.js headers. CORS domain whitelist. Rate limiting. No API keys exposed in frontend.</span></div>
+  <div class="item-row"><span class="badge b-teal" style="flex-shrink:0">Delivery</span><span>Turnaround: 24–72 hours. Client gets Vercel URL + GitHub repo + README with deployment guide.</span></div>
+</div>
+<div class="section-label">3 portfolio variants you should build</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+  <div class="variant-card"><p class="v-label">Variant 1 — SaaS / tech</p><p class="v-title">Project management tool landing page</p><p class="v-desc">Dark navy theme, features grid, pricing table. Most common client type on Upwork.</p></div>
+  <div class="variant-card"><p class="v-label">Variant 2 — local business</p><p class="v-title">Restaurant or cafe landing page</p><p class="v-desc">Warm colors, menu section, map embed, reservation form. Easy to sell in Kathmandu market.</p></div>
+  <div class="variant-card"><p class="v-label">Variant 3 — personal brand</p><p class="v-title">Freelancer / consultant portfolio</p><p class="v-desc">Minimal, clean, resume-style. High volume on Fiverr — people building their own brand.</p></div>
+</div>
+</div>
+</div>`,
+
+// 3: HLD
+`<div class="section-label">High-level architecture — 2-tier (no database needed)</div>
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+  <div style="border:0.5px solid #AFA9EC;border-radius:var(--border-radius-md);padding:12px 14px;background:#EEEDFE">
+    <span style="font-size:12px;font-weight:500;color:#3C3489">Layer 1 — React SPA (Vercel)</span><br>
+    <span style="font-size:12px;color:#534AB7">React 18 · Tailwind · Framer Motion · React Hook Form · Axios<br>Sections composed top to bottom · No routing needed (single page) · Static HTML + JS bundle</span>
+  </div>
+  <div style="text-align:center;font-size:18px;color:var(--color-text-secondary)">↓ POST /api/contact (JSON)</div>
+  <div style="border:0.5px solid #5DCAA5;border-radius:var(--border-radius-md);padding:12px 14px;background:#E1F5EE">
+    <span style="font-size:12px;font-weight:500;color:#085041">Layer 2 — Express API (Railway)</span><br>
+    <span style="font-size:12px;color:#0F6E56">rate-limit → CORS → helmet → validate → Nodemailer → Gmail SMTP<br>Single POST endpoint · No database · Stateless · No auth needed</span>
+  </div>
+  <div style="text-align:center;font-size:18px;color:var(--color-text-secondary)">↓ SMTP</div>
+  <div style="border:0.5px solid #85B7EB;border-radius:var(--border-radius-md);padding:12px 14px;background:#E6F1FB">
+    <span style="font-size:12px;font-weight:500;color:#0C447C">Gmail SMTP (external)</span><br>
+    <span style="font-size:12px;color:#185FA5">Nodemailer sends via Gmail App Password → email arrives in client's inbox + auto-reply to sender</span>
+  </div>
+</div>
+<div class="grid2">
+  <div>
+    <div class="section-label">Contact form flow</div>
+    <div class="card" style="padding:12px 14px">
+      <div class="item-row"><span class="item-num">1</span>User fills form, clicks submit</div>
+      <div class="item-row"><span class="item-num">2</span>React Hook Form validates client-side (instant feedback)</div>
+      <div class="item-row"><span class="item-num">3</span>Axios POST to backend with {name, email, message}</div>
+      <div class="item-row"><span class="item-num">4</span>Backend: rate-limit check → express-validator → sanitize</div>
+      <div class="item-row"><span class="item-num">5</span>Nodemailer sends 2 emails: owner notification + sender auto-reply</div>
+      <div class="item-row"><span class="item-num">6</span>200 OK → frontend shows success toast. 429 → "Too many requests"</div>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Page scroll flow</div>
+    <div class="card" style="padding:12px 14px">
+      <div class="item-row"><span class="item-num">1</span>Navbar CTA → scrolls to #contact section</div>
+      <div class="item-row"><span class="item-num">2</span>Framer Motion InView triggers fade-up on each section as user scrolls</div>
+      <div class="item-row"><span class="item-num">3</span>Mobile: hamburger opens overlay nav with same smooth-scroll links</div>
+      <div class="item-row"><span class="item-num">4</span>Pricing card CTA → either scroll to contact or external link</div>
+      <div class="item-row"><span class="item-num">5</span>WhatsApp button fixed bottom-right — instant messaging option</div>
+      <div class="item-row"><span class="item-num">6</span>Footer social links open in new tab</div>
+    </div>
+  </div>
+</div>`,
+
+// 4: LLD
+`<div class="grid2">
+<div>
+<div class="section-label">Backend — full contact endpoint code</div>
+<div class="folder" style="font-size:11px">
+<span class="fc">// routes/contact.routes.js</span>
+<span style="color:#185FA5">const</span> { body } = require('express-validator');
+<span style="color:#185FA5">const</span> validate = require('../middleware/validate');
+<span style="color:#185FA5">const</span> emailSvc = require('../services/email.service');
+
+<span style="color:#185FA5">const</span> rules = [
+  body('name').trim().notEmpty(),
+  body('email').isEmail().normalizeEmail(),
+  body('message').trim().isLength({ min: 10 })
+];
+
+router.post('/', limiter, rules, validate,
+  async (req, res) => {
+    <span style="color:#185FA5">const</span> { name, email, message } = req.body;
+    <span style="color:#185FA5">await</span> emailSvc.sendContact({ name, email, message });
+    res.json({ success: <span style="color:#A32D2D">true</span> });
+  }
+);
+</div>
+<div class="folder" style="font-size:11px;margin-top:8px">
+<span class="fc">// services/email.service.js</span>
+<span style="color:#185FA5">const</span> transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS   <span class="fc">// App Password</span>
+  }
+});
+
+sendContact = async ({ name, email, message }) => {
+  <span class="fc">// 1. Notify owner</span>
+  <span style="color:#185FA5">await</span> transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to: process.env.TO_EMAIL,
+    subject: <span style="color:#3B6D11">\`New message from \${name}\`</span>,
+    html: <span style="color:#3B6D11">\`&lt;p&gt;\${message}&lt;/p&gt;&lt;p&gt;Reply: \${email}&lt;/p&gt;\`</span>
+  });
+  <span class="fc">// 2. Auto-reply to sender</span>
+  <span style="color:#185FA5">await</span> transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: <span style="color:#3B6D11">'Thanks, we got your message!'</span>,
+    html: <span style="color:#3B6D11">\`&lt;p&gt;Hi \${name}, we'll reply within 24hrs.&lt;/p&gt;\`</span>
+  });
+};
+</div>
+</div>
+<div>
+<div class="section-label">Frontend — AnimatedSection wrapper</div>
+<div class="folder" style="font-size:11px">
+<span class="fc">// components/ui/AnimatedSection.jsx</span>
+<span style="color:#185FA5">import</span> { motion } from 'framer-motion';
+<span style="color:#185FA5">import</span> { useInView } from 'framer-motion';
+
+<span style="color:#185FA5">const</span> AnimatedSection = ({ children, id }) => {
+  <span style="color:#185FA5">const</span> ref = useRef(null);
+  <span style="color:#185FA5">const</span> isInView = useInView(ref, { once: true, margin: '-80px' });
+  <span style="color:#185FA5">return</span> (
+    &lt;motion.section
+      id={id} ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    &gt;
+      {children}
+    &lt;/motion.section&gt;
+  );
+};
+<span class="fc">// Wrap every section: &lt;AnimatedSection id="features"&gt;...&lt;/AnimatedSection&gt;</span>
+</div>
+<div class="section-label" style="margin-top:10px">Tailwind config — brand colors</div>
+<div class="folder" style="font-size:11px">
+<span class="fc">// tailwind.config.js — customize per client</span>
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#YOUR_BRAND_COLOR',
+        secondary: '#YOUR_SECONDARY',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+<span class="fc">// Add Google Fonts to index.html &lt;head&gt; — Inter, Poppins, or Plus Jakarta Sans</span>
+</div>
+<div class="section-label" style="margin-top:10px">Lighthouse checklist before delivery</div>
+<div class="card" style="padding:10px 12px;margin:0">
+  <div class="item-row"><span class="check">✓</span>Images: WebP format, width/height set, loading="lazy"</div>
+  <div class="item-row"><span class="check">✓</span>LCP element visible within first screen (no above-fold image lazy)</div>
+  <div class="item-row"><span class="check">✓</span>No render-blocking scripts, all deferred</div>
+  <div class="item-row"><span class="check">✓</span>meta name="description" and og:image set</div>
+  <div class="item-row"><span class="check">✓</span>All form inputs have associated labels</div>
+</div>
+</div>
+</div>`,
+
+// 5: End Result
+`<div class="section-label">What you deliver to the client</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+  <div class="er-card"><p class="er-title">Live URL on their domain</p><p class="er-desc">Deploy to Vercel. Walk them through pointing their domain. They see their real URL live. This alone justifies the price for most small clients.</p></div>
+  <div class="er-card"><p class="er-title">Working contact form</p><p class="er-desc">Submit the form, they receive a real email in their inbox. Auto-reply confirms to the sender. Demo this in your Loom — it closes sales.</p></div>
+  <div class="er-card"><p class="er-title">Lighthouse screenshot</p><p class="er-desc">Run Chrome DevTools Lighthouse. Screenshot showing 90+ Performance, 90+ Accessibility, 100 SEO. Include this in your Fiverr gig images.</p></div>
+  <div class="er-card"><p class="er-title">Mobile screenshot</p><p class="er-desc">Open on your phone. Screenshot the hero and contact section. Add to portfolio — half of clients check mobile before hiring you.</p></div>
+  <div class="er-card"><p class="er-title">GitHub with README</p><p class="er-desc">Public repo with clear README: what it is, stack, how to clone and run, env variables needed, live URL linked. Shows you work professionally.</p></div>
+  <div class="er-card"><p class="er-title">Reusable template</p><p class="er-desc">Each variant you build becomes a template. Next client order: swap colors, copy, images. Delivery time drops from 10 hours to 4 hours. Price stays the same.</p></div>
+</div>
+<div class="section-label">Your Fiverr gig strategy</div>
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px;background:var(--color-background-primary);margin-bottom:10px">
+  <div style="display:grid;grid-template-columns:100px 1fr 80px;gap:8px;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-weight:500;color:var(--color-text-secondary)"><span>Package</span><span>Includes</span><span>Price</span></div>
+  <div style="display:grid;grid-template-columns:100px 1fr 80px;gap:8px;font-size:13px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary)"><span class="badge b-gray">Basic</span><span>5 sections, contact form, mobile responsive, 3-day delivery</span><span style="font-weight:500;color:var(--color-text-primary)">$50</span></div>
+  <div style="display:grid;grid-template-columns:100px 1fr 80px;gap:8px;font-size:13px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary)"><span class="badge b-purple">Standard</span><span>8 sections, animations, Pricing table, FAQ, 5-day delivery</span><span style="font-weight:500;color:var(--color-text-primary)">$80</span></div>
+  <div style="display:grid;grid-template-columns:100px 1fr 80px;gap:8px;font-size:13px;padding:7px 0"><span class="badge b-teal">Premium</span><span>Full page, WhatsApp button, Map embed, Google Analytics, 7-day delivery</span><span style="font-weight:500;color:var(--color-text-primary)">$120</span></div>
+</div>
+<div class="tip">Build this project once in 1–2 days. Then every future order takes 4–6 hours. At $80 average per order × 3 orders/week = $240/week = $960/month from this single gig alone. This is your cashflow while the bigger SaaS dashboard project attracts high-ticket clients.</div>`
+
+];
+
+function p2show(i) {
+  document.querySelectorAll('#p2tabs .tab').forEach((t,j) => t.classList.toggle('active', i===j));
+  document.getElementById('p2content').innerHTML = p2panels[i];
+}
+p2show(0);
+</script>
